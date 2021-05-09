@@ -46,7 +46,7 @@ exports.signin = (req, res) => {
       });
     }
 
-    var token = jwt.sign({ key: user._id }, process.env.SECRET);
+    var token = jwt.sign({ id: user._id }, process.env.SECRET);
 
     res.cookie("token", token, { expire: new Date() + 9999 });
 
@@ -73,9 +73,9 @@ exports.isSignedIn = authtoken({
 });
 
 exports.isAuthenticated = (req, res, next) => {
-  let checker = req.profile && req.auth && req.profile._id === req.auth._id;
+  let checker = req.profile && req.auth && req.profile._id == req.auth._id;
   if(!checker){
-    return res.json({
+    return res.status(403).json({
       message: "User is not authenticated!!"
     });
   }

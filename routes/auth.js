@@ -16,10 +16,7 @@ router.post("/signin",[
 router.get("/signout", signout);
 
 router.get("/test", isSignedIn, function(req, res){
-	res.json({
-		user: req.auth,
-		message: "User signed in!!"
-	})
+	return res.json(req.auth);
 });
 
 module.exports = router;
