@@ -46,7 +46,7 @@ exports.signin = (req, res) => {
       });
     }
 
-    var token = jwt.sign({ id: user._id }, process.env.SECRET);
+    var token = jwt.sign({ _id: user._id }, process.env.SECRET);
 
     res.cookie("token", token, { expire: new Date() + 9999 });
 
