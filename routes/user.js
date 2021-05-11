@@ -1,4 +1,3 @@
-const User = require("../models/user");
 const express = require("express");
 const router = express.Router();
 
@@ -9,6 +8,6 @@ router.param("id", getUserById);
 router.get("/user/:id", isSignedIn, isAuthenticated, getUser);
 router.get("/users", getUsers);
 
-router.put("/user/:id", isSignedIn, updateUser);
+router.put("/user/:id", isSignedIn, isAuthenticated, updateUser);
 
 module.exports = router;
